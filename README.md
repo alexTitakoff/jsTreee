@@ -6,3 +6,14 @@ myScript Unic
 http://jsfiddle.net/jaredwilli/tZPg4/4/
 
 http://shpargalkablog.ru/2013/08/appendchild-removechild-javascript.html
+
+http://shpargalkablog.ru/2013/09/hover-javascript.html
+
+https://learn.javascript.ru/drag-and-drop-objects
+
+
+document.documentElement.classList.add('my-awesome-class');
+
+document.documentElement.classList.remove('my-awesome-class');
+
+document.documentElement.classList.contains('my-awesome-class');

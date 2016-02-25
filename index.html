@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -9,69 +9,108 @@
 <body>
 
 
-	<ul id="root_scope"> 
+	<div id="root_scope"> 
 
-		<li  id="root_node">RootNode <input class="node_button" type="button" value="Добавить">
-			<input id="node0" type="text" value=""> </li>
-			<div id="id1">1</div>
-			<div id="id2">2</div>
-			<div id="id3">3</div>
-
-
-			<!-- <a id="id" href="#" class="cls" onclick="alert(this.className); alert(this.id);alert(this.innerHTML)">ссылка</a> -->
-			
-
-
-
+		<ul  id="root_node">RootNode 
+			<input class="root_node_buttonNode" type="button" value="addNode">
+			<input class="root_node_buttonFile" type="button" value="addFile">
+			<input class="root_node" type="text" value=""> 
+		</ul>
+		<ul id="root_node2" >RootNode2
+			<input class="root_node_buttonNode2" type="button" value="addNode">
+			<input class="root_node_buttonFile2" type="button" value="addFile">
+			<input class="root_node" type="text" value=""> 
 		</ul>
 
 
-		
 
 
-		<script>
-		//Вешаем прослушку на весь Scope дерева и Получаем Id для индексирования элементов.
-		document.getElementById('root_scope').onclick = function(event) {
-			targetNode = event.target||event.srcElement;
-			alert(targetNode.id)
+		<!-- <a id="id" href="#" class="cls" onclick="alert(this.className); alert(this.id);alert(this.innerHTML)">ссылка</a> -->
 
-			var targetNode = targetNode.id;
-			console.log(targetNode);
+
+
+
+	</div>
 
 
 
 
 
-		// создали li-шку 
-		var queryId = targetNode;
-		console.log(queryId);
-		document.querySelector('#root_scope input').onclick = function() {
-			var theNode = document.createElement('li'); 
-			var valueNode = document.getElementById("node0").value; // определяем значение в текстовом поле
-			
-			
+	<script>
 
-			theNode.innerHTML = valueNode + '<input  type="button" value="Добавить"> <input type="text" value=""> ';  			
-			this.parentNode.appendChild(theNode);  
+	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
+	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
+		//Функция ховера
+		var all = document.getElementById('root_scope');
+		for(var i=0;i<all.childNodes.length;i++) {
+			if (all.childNodes[i].nodeType == 1) {
+				all.childNodes[i].onmouseover = function() {   //наведение на элемент
+					this.style.background = '#2C64FF';
+				};
 
-			//this.parentNode.appendChild(nodeInput); 
+				all.childNodes[i].onmouseout = function() {  // уход мышки с элемента
+					this.style.background = 'none';
+				};
 
-			
-			//анимашка
-			getComputedStyle(theNode).opacity;
-			theNode.style.opacity = '1';
-
+			};
 		};
-	   // создали li-шку 
+		//Функция ховера
 
 
+		//Вешаем прослушку на весь Scope дерева и Получаем Id или ClassName для индексирования элементов.
+		document.getElementById('root_scope').onclick = function(event) {
+			target = event.target||event.srcElement;
+			console.log(target);
+
+			
+			// var all =  this.childNodes;
+			// console.log(all);
+			for(var i=0;i<this.childNodes.length;i++) {
+				if (this.childNodes[i].nodeType == 1) {
+					this.childNodes[i].classList.remove('selected');
 
 
+				};
+			};
+
+
+			//all.setAttribute("style","background:;"); 
+			target.classList.add('selected')
+			//target.setAttribute("style","background:#4071FF;"); 
+			alert(target.id || target.className)
+
+			// var target = target.id || target.className;
+			// var target = "'" + "#" + target + "'";
+
+			//console.log(target);
+			
+
+
+			// console.log("клик обработался дважды")
+			// var theNode = document.createElement('ul'); 
+			// var valueNode = document.getElementsByClassName("root_node").value; // определяем значение в текстовом поле
+			
+			
+
+			// theNode.innerHTML = valueNode + '<input  type="button" value="Добавить"> <input type="text" value=""> ';  			
+			// this.appendChild(theNode);  
+
+			// //this.parentNode.appendChild(nodeInput); 
+
+			
+			// //анимашка
+			// getComputedStyle(theNode).opacity;
+			// theNode.style.opacity = '1';
+
+
+	  //  создали li-шку
 
 	};
 //Вешаем прослушку на весь Scope дерева и Получаем Id для индексирования элементов.
 
 
+	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
+	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
 
 
 
