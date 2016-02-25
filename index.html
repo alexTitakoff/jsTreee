@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jsTreee</title>
+	<link rel="stylesheet" href="main.css">
+	
+</head>
+<body>
+
+
+	<ul id="root_scope"> 
+
+		<li  id="root_node">RootNode <input class="node_button" type="button" value="Добавить">
+			<input id="node0" type="text" value=""> </li>
+			<div id="id1">1</div>
+			<div id="id2">2</div>
+			<div id="id3">3</div>
+
+
+			<!-- <a id="id" href="#" class="cls" onclick="alert(this.className); alert(this.id);alert(this.innerHTML)">ссылка</a> -->
+			
+
+
+
+		</ul>
+
+
+		
+
+
+		<script>
+		//Вешаем прослушку на весь Scope дерева и Получаем Id для индексирования элементов.
+		document.getElementById('root_scope').onclick = function(event) {
+			targetNode = event.target||event.srcElement;
+			alert(targetNode.id)
+
+			var targetNode = targetNode.id;
+			console.log(targetNode);
+
+
+
+
+
+		// создали li-шку 
+		var queryId = targetNode;
+		console.log(queryId);
+		document.querySelector('#root_scope input').onclick = function() {
+			var theNode = document.createElement('li'); 
+			var valueNode = document.getElementById("node0").value; // определяем значение в текстовом поле
+			
+			
+
+			theNode.innerHTML = valueNode + '<input  type="button" value="Добавить"> <input type="text" value=""> ';  			
+			this.parentNode.appendChild(theNode);  
+
+			//this.parentNode.appendChild(nodeInput); 
+
+			
+			//анимашка
+			getComputedStyle(theNode).opacity;
+			theNode.style.opacity = '1';
+
+		};
+	   // создали li-шку 
+
+
+
+
+
+	};
+//Вешаем прослушку на весь Scope дерева и Получаем Id для индексирования элементов.
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

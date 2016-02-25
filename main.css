@@ -1,0 +1,12 @@
+
+
+#root_scope li {
+	transition: 0.5s;
+	opacity: 0;
+}
+
+#root_scope li:first-child {
+	opacity: 1;
+}
+
+
