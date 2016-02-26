@@ -10,11 +10,14 @@
 
 
 	<div id="root_scope"> 
+		<input style = "display: inline-block !important"class="root_node_buttonNode" type="button" value="addNode">
+		<input style = "display: inline-block !important"	class="root_node_buttonFile" type="button" value="addFile">
+		<input style = "display: inline-block !important"id ="text" type="text" value=""> 
 
 		<ul  id="root_node">RootNode 
 			<input class="root_node_buttonNode" type="button" value="addNode">
 			<input class="root_node_buttonFile" type="button" value="addFile">
-			<input class="root_node" type="text" value=""> 
+			<input id ="text" type="text" value=""> 
 		</ul>
 		<ul id="root_node2" >RootNode2
 			<input class="root_node_buttonNode2" type="button" value="addNode">
@@ -38,54 +41,101 @@
 
 	<script>
 
-	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
-	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
+			//Добавление Root Nodes	
 
 
+			var RootScope = document.getElementById('root_scope');
+			RootScope.childNodes[1].onclick = function() {
+				var theNode = document.createElement('ul'); 
+			var valueNode =  RootScope.childNodes[5].value;  //target.lastChild.value; // определяем значение в текстовом поле
+			theNode.innerHTML = valueNode + '<input class="root_node_buttonNode" type="button" value="addNode">	<input class="root_node_buttonFile" type="button" value="addFile"> <input id ="text" type="text" value=""> ';  			
+			
+			console.log("click addNode");
+			RootScope.appendChild(theNode);  
+			MouseOver();    // <<<<========== Перезапускаем МаусОвер
+
+		};
+
+		    //Добавление Root Nodes	
+
+
+
+
+	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
+	//БОЛЬШОЙ СКРИПТ СЕЛЕКТИДА!!!
 
 		//Функция ховера
-		var all = document.getElementById('root_scope');
-		for(var i=0;i<all.childNodes.length;i++) {
-			if (all.childNodes[i].nodeType == 1) {
-				all.childNodes[i].onmouseover = function() {   //наведение на элемент
-					this.style.background = '#2C64FF';
-				};
 
-				all.childNodes[i].onmouseout = function() {  // уход мышки с элемента
+
+		var MouseOver = function () {
+			var all = document.getElementById('root_scope');
+			var allAll = all.getElementsByTagName('*');
+
+			for(var i=3;i<allAll.length;i++) { 			// c 6-ого потому что первые три это Root_scope Input-ы на которые MouseOver не должен действовать
+					allAll[i].onmouseenter = function() {   //наведение на элемент
+						this.style.background = '#2C64FF';
+					};
+
+				allAll[i].onmouseout = function() {  // уход мышки с элемента
 					this.style.background = 'none';
-				};
-
+				}
 			};
+
 		};
+
+
+
+		// var MouseOver = function () {
+		// 	var all = document.getElementById('root_scope');
+		// 	for(var i=6;i<all.childNodes.length;i++) { 			// c 6-ого потому что первые три это Root_scope Input-ы на которые MouseOver не должен действовать
+		// 			all.childNodes[i].onmouseover = function() {   //наведение на элемент
+		// 				this.style.background = '#2C64FF';
+		// 			};
+
+		// 		all.childNodes[i].onmouseout = function() {  // уход мышки с элемента
+		// 			this.style.background = 'none';
+		// 		}
+		// 	};
+
+		// };
+		MouseOver();  /// <<<<================================== заупускаем пока в ручную, потому что при Операциях на клиенте без рефреша наблюдаются своеобразные недоРендеринг
+		
 		//Функция ховера
 
 
 		//Вешаем прослушку на весь Scope дерева и Получаем Id или ClassName для индексирования элементов.
-		document.getElementById('root_scope').onclick = function(event) {
+		document.getElementById('root_scope').ondblclick = function(event) {
 			target = event.target||event.srcElement;
 			console.log(target);
 
 			
 			// var all =  this.childNodes;
 			// console.log(all);
-			for(var i=0;i<this.childNodes.length;i++) {
-				if (this.childNodes[i].nodeType == 1) {
-					this.childNodes[i].classList.remove('selected');		  // убираем класс selected
-					var targetInputs = this.childNodes[i].getElementsByTagName('input');  // все внутренние элементы ноним
+
+			var all = this.getElementsByTagName('*');
+			for(var i=0;i<all.length;i++) {
+					all[i].classList.remove('selected');		  // убираем класс selected
+					var targetInputs = all[i].getElementsByTagName('input');  // все внутренние элементы ноним
 					for(var j=0;j<targetInputs.length;j++) {    				
 						targetInputs[j].style.display = 'none';
-
 					};
-
 				};
-			};
+			// for(var i=0;i<this.childNodes.length;i++) {
+			// 	if (this.childNodes[i].nodeType == 1) {
+			// 		this.childNodes[i].classList.remove('selected');		  // убираем класс selected
+			// 		var targetInputs = this.childNodes[i].getElementsByTagName('input');  // все внутренние элементы ноним
+			// 		for(var j=0;j<targetInputs.length;j++) {    				
+			// 			targetInputs[j].style.display = 'none';
+			// 		};
+			// 	};
+			// };
 
 			// Добавляем класс Селекта для выделения 
 			target.classList.add('selected')
 			var targetInputs = target.getElementsByTagName('input');  // получаем массив элементов, в данном случае input
-			for(var i=0;i<targetInputs.length;i++) {    				// перебираем все элементы
+			for(var i=0;i < 3;i++) {    				// перебираем все элементы
+				console.log(targetInputs.length);
 				targetInputs[i].style.display = 'inline-block';
-
 			};
 
 
@@ -98,13 +148,19 @@
 
 
 			// console.log("клик обработался дважды")
-			// var theNode = document.createElement('ul'); 
-			// var valueNode = document.getElementsByClassName("root_node").value; // определяем значение в текстовом поле
 			
 			
+			target.childNodes[1].onclick = function() {
+				var theNode = document.createElement('ul'); 
+			var valueNode =  target.childNodes[5].value;  //target.lastChild.value; // определяем значение в текстовом поле
+			theNode.innerHTML = valueNode + '<input class="root_node_buttonNode" type="button" value="addNode">	<input class="root_node_buttonFile" type="button" value="addFile"> <input id ="text" type="text" value=""> ';  			
+			
+			console.log("click addNode");
+			target.appendChild(theNode); 
+			MouseOver();    // <<<<========== Перезапускаем МаусОвер 
 
-			// theNode.innerHTML = valueNode + '<input  type="button" value="Добавить"> <input type="text" value=""> ';  			
-			// this.appendChild(theNode);  
+		};
+
 
 			// //this.parentNode.appendChild(nodeInput); 
 

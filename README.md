@@ -17,3 +17,8 @@ document.documentElement.classList.add('my-awesome-class');
 document.documentElement.classList.remove('my-awesome-class');
 
 document.documentElement.classList.contains('my-awesome-class');
+
+
+http://codepen.io/Vampireos/pen/yFbut
+http://codepen.io/willpower/pen/pJKdej
+http://codepen.io/greengerong/pen/gapqZJ
